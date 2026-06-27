@@ -26,36 +26,19 @@ def stock_categoria(categoria):
         print("no encontrado")
 
 def busqueda_precio(p_min,p_max):
-    try:
-        p_min = False
-        p_max = False
-        if p_min > 0:
-            p_min = True
-        if p_max > 0:
-            p_max = True
-    except ValueError:
-        print("Debe ingresar valores enteros!!")
-    
+    lista = []
+    for codigo in inventario:
+        precio = inventario[codigo][0]
+        stock = inventario[codigo][1]
 
-        
-
-   
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if precio >= p_min and precio <= p_max:
+            rareza = items[codigo][2]
+            lista.append(rareza + "---" + codigo)    
+    lista.sort()
+    if len(lista) > 0:
+        print(lista)
+    else:
+        print("no hay objetos en el rando de precio ingresado")  
 
 
 while True:
@@ -77,6 +60,7 @@ while True:
         stock_categoria(categoria)
     elif op == 2:
             p_min = int(input("ingrese precio minimo: "))
-            p_max = int(input("ingrese precio maximo: ")) 
+            p_max = int(input("ingrese precio maximo: "))
+            busqueda_precio(p_min,p_max)
        
 
